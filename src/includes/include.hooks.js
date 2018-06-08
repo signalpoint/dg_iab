@@ -1,7 +1,7 @@
 /**
- * Implements hook_post_process_route_change().
+ * Implements hook_pre_process_route_change().
  */
-function dg_iab_post_process_route_change(route, _newPath, oldPath) {
+function dg_iab_pre_process_route_change(newPath, oldPath) {
 
   // Delete any leftover InAppBrowser options.
   dg._iab = {};
