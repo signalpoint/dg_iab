@@ -23,8 +23,9 @@ dg_iab.init = function(variables) {
     delete attrs.target;
   }
 
-  // Set up the onclick handler.
-  attrs.onclick = 'dg_iab._onclick(this)';
+  // Append our onclick handler up the onclick handler.
+  if (!attrs.onclick) { attrs.onclick = ''; }
+  attrs.onclick += 'dg_iab._onclick(this);';
 
   // Save the InAppBrowser config.
   dg_iab.save(attrs.id, variables._inAppBrowser);
@@ -78,6 +79,7 @@ dg_iab._onclick = function(anchor) {
     }
     options = options.join(',');
   }
+  //console.log(options);
 
   // Open the in app browser.
   var ref = cordova.InAppBrowser.open(
