@@ -2,6 +2,12 @@
 
 Adds cordova's InAppBrowser capabilities to compiled DrupalGap apps.
 
+https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/
+
+## settings.js
+
+This only works for compiled apps:
+
 ```
 dg.settings.mode = 'cordova';
 ```
