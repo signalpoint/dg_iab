@@ -69,23 +69,25 @@ dg_iab._onclick = function(anchor) {
   var options = "location=yes";
 
   // Process any custom options.
-  if (iab.options && dg.isObject(iab.options)) {
-    var customOptions = iab.options;
-    if (!customOptions.location) { customOptions.location = 'yes'; }
-    options = [];
-    for (var option in customOptions) {
-      if (!customOptions.hasOwnProperty(option)) { continue; }
-      options.push(option + '=' + customOptions[option]);
+  if (iab.options) {
+    if (typeof iab.options === 'string') { options = iab.options; }
+    else if (dg.isObject(iab.options)) {
+      var customOptions = iab.options;
+      options = [];
+      for (var option in customOptions) {
+        if (!customOptions.hasOwnProperty(option)) { continue; }
+        options.push(option + '=' + customOptions[option]);
+      }
+      options = options.join(',');
     }
-    options = options.join(',');
   }
-  //console.log(options);
+  //console.log('options', options);
 
   // Open the in app browser.
   var ref = cordova.InAppBrowser.open(
-      anchor.getAttribute('data-iab-url'),
-      anchor.getAttribute('data-iab-target'),
-      options
+    anchor.getAttribute('data-iab-url'),
+    anchor.getAttribute('data-iab-target'),
+    options
   );
 
   // Save the updated InAppBrowser config.
